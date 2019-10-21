@@ -27,7 +27,7 @@ namespace DataGenerator
 
 
             var records = new System.Collections.Generic.List<EmpData>();
-            for(int i=1;i<1000;i++)
+            for(int i=1;i<100000;i++)
             {
                 //var empData = new EmpData();
                 
@@ -43,7 +43,16 @@ namespace DataGenerator
                     empData.Q3 = random.Next(10000, 80000);
                     empData.Q4 = random.Next(10000, 80000);
                     empData.Bonus =Math.Round( empData.Q1 + (empData.Q1 / 10) * 100 + empData.Q2 + (empData.Q2 / 9) * 100 + empData.Q3 + (empData.Q3 / 8) * 100 + empData.Q4 + (empData.Q4 / 12) * 100,2);
-                    empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 + empData.Bonus;
+                    if (j % 2 == 0 && j> 30)
+                    {
+                        empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 + empData.Bonus;
+                        empData.LabelVal = true;
+                    }
+                    else
+                    {
+                        empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 - empData.Bonus;
+                        empData.LabelVal = false;
+                    }
                     records.Add(empData);
                     
                 }

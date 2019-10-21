@@ -17,6 +17,7 @@ namespace DataGenerator
         public double Q3 { get; set; }
         public double Q4 { get; set; }
         public double Bonus { get; set; }
+        public bool LabelVal { get; set; }
     }
         
     
