@@ -35,40 +35,36 @@ namespace DataGenerator
                 {
                     var empData = new EmpData();
                     empData.Id = i;
-                    empData.JobId = 1001 + j;
-                    empData.DepId = 10000 + j;
-                    empData.Year = 2000 + j;
-                    empData.Q1 = random.Next(10000, 80000);
+                    empData.JobId = random.Next(1001,2099);
+                    empData.DepId = random.Next(10000,10200);
+                    empData.Year = random.Next(2000,2200);
+                    empData.Q1 = random.Next(30000, 110000);
                     empData.Q2 = random.Next(10000, 80000);
                     empData.Q3 = random.Next(10000, 80000);
-                    empData.Q4 = random.Next(10000, 80000);
+                    empData.Q4 = random.Next(30000, 110000);
                     empData.Bonus =Math.Round( empData.Q1 + (empData.Q1 / 10) * 100 + empData.Q2 + (empData.Q2 / 9) * 100 + empData.Q3 + (empData.Q3 / 8) * 100 + empData.Q4 + (empData.Q4 / 12) * 100,2);
                     if (j % 2 == 0 && j> 30)
                     {
                         empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 + empData.Bonus;
-                        empData.LabelVal = true;
+                        //empData.LabelVal = true;
                     }
                     else
-                    {
-                        empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 - empData.Bonus;
-                        empData.LabelVal = false;
-                    }
+                        empData.Salary = empData.Q1 + empData.Q2 + empData.Q3 + empData.Q4 + (empData.Bonus)/(random.Next(1,6));
                     records.Add(empData);
                     
                 }
                 
             }
             var result = records.OrderBy(item => random.Next());
-
+             
             string path = Directory.GetCurrentDirectory();
-            string filename = path + "/file.csv";
+            string filename = path + "/datavalidatortestdata.csv";
            
 
             using (var writer = new StreamWriter(filename))
             using (var csv = new CsvWriter(writer))
-            {
                 csv.WriteRecords(result);
-            }
+
         }
         
     }
